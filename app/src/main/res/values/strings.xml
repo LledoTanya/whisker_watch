@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">whisker_watch</string>
+    <string name="anonymous_report">Anonymous Report</string>
+    <string name="case_description">Case Description</string>
+    <string name="location">Location</string>
+    <string name="turn_on_geo_tagging">Turn on geo-tagging</string>
+    <string name="attach_media_photo_video">Attach Media (Photo/Video)</string>
+    <string name="drop_files_here_or">Drop files here\nor</string>
+    <string name="upload_file">Upload File</string>
+    <string name="submit">Submit</string>
+    <string name="animals_archive">Animals Archive</string>
+    <string name="home">Home</string>
+    <string name="report">Report</string>
+    <string name="archives">Archives</string>
+    <string name="profile">Profile</string>
 </resources>

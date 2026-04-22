@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/values/colors.xml -->
 <resources>
     <!-- Brand Colors -->
     <color name="primary_purple">#5B5EA6</color>
     <color name="primary_purple_dark">#4A4D8B</color>
     <color name="primary_purple_light">#7B7EC6</color>
+    <color name="header_blue">#3B4A94</color>
 
     <!-- Card Colors -->
     <color name="card_blue">#A3C8EB</color>
@@ -22,6 +22,7 @@
     <!-- Text Colors -->
     <color name="text_dark">#1A1A2E</color>
     <color name="text_secondary">#555577</color>
+    <color name="text_label_blue">#5D78B8</color>
     <color name="hint_gray">#AAAAAA</color>
     <color name="nav_inactive">#888888</color>
 
@@ -31,12 +32,14 @@
     <color name="status_pending">#FF9800</color>
 
     <!-- Button Colors -->
-    <color name="btn_green">#6DBF67</color>
-    <color name="btn_pink">#E8A0B0</color>
-    <color name="btn_yellow">#FDFDD6</color>
+    <color name="btn_green">#B8E994</color>
+    <color name="btn_pink">#FFB4B4</color>
+    <color name="btn_yellow">#FFF5A5</color>
     <color name="btn_blue">#DBE9FD</color>
 
     <!--strokes -->
     <color name="srk_blue">#6B96D1</color>
+    <color name="srk_blue_light">#2196F3</color>
     <color name="srk_yellow">#F0D483</color>
+    <color name="black">#000000</color>
 </resources>
