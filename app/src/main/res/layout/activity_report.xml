@@ -206,7 +206,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/submit_report_logo"
+                android:src="@drawable/home_paw_logo"
                 app:tint="@color/text_label_blue" />
             <TextView
                 android:layout_width="wrap_content"
@@ -275,7 +275,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/nav_profile"
+            android:id="@+id/nav_help_centers"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -287,12 +287,12 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/account_logo"
+                android:src="@drawable/geo_map_logo"
                 app:tint="@color/text_label_blue" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:text="Nearby"
                 android:textSize="10sp"
                 android:textColor="@color/text_label_blue"/>
         </LinearLayout>

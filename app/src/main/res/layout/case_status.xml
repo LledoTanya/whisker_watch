@@ -361,7 +361,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:text="Resolved"
                         android:textSize="13sp"
                         android:textStyle="bold"
@@ -395,12 +394,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="?attr/selectableItemBackground">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/submit_report_logo"
+                android:src="@drawable/home_paw_logo"
                 app:tint="@color/header_blue" />
 
             <TextView
@@ -420,7 +421,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="?attr/selectableItemBackground">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -443,7 +446,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="?attr/selectableItemBackground">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Home">
 
             <ImageView
                 android:layout_width="48dp"
@@ -459,7 +465,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="?attr/selectableItemBackground">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -475,15 +483,17 @@
                 android:textColor="@color/text_label_blue" />
         </LinearLayout>
 
-        <!-- Profile -->
+        <!-- Nearby -->
         <LinearLayout
-            android:id="@+id/navProfile"
+            android:id="@+id/navHelpCenters"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="?attr/selectableItemBackground">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -492,10 +502,9 @@
                 app:tint="@color/text_label_blue" />
 
             <TextView
-                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Geotagging"
+                android:text="Nearby"
                 android:textColor="@color/text_label_blue"
                 android:textSize="10sp" />
         </LinearLayout>

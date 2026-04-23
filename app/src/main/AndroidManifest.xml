@@ -29,6 +29,14 @@
             android:name=".ReportActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".CaseStatusActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HelpCentersActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

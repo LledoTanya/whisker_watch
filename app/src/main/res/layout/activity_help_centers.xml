@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/header_blue">
@@ -12,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/animals_archive"
+        android:text="Nearby Help Centers"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -30,44 +29,13 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintTop_toBottomOf="@id/tvHeader">
 
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHelpCenters"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="12dp"
-            android:clipToPadding="false">
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:useDefaultMargins="true">
-
-                <!-- Placeholder 1 -->
-                <include android:id="@+id/item1" layout="@layout/item_animal_archive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1" />
-
-                <!-- Placeholder 2 -->
-                <include android:id="@+id/item2" layout="@layout/item_animal_archive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1" />
-
-                <!-- Placeholder 3 -->
-                <include android:id="@+id/item3" layout="@layout/item_animal_archive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1" />
-
-                <!-- Placeholder 4 -->
-                <include android:id="@+id/item4" layout="@layout/item_animal_archive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1" />
-
-            </GridLayout>
-        </ScrollView>
+            android:clipToPadding="false"
+            android:padding="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,29 +49,30 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Home -> CaseStatusActivity -->
         <LinearLayout
             android:id="@+id/navHome"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home_paw_logo"
-                android:contentDescription="@string/home"
+                android:contentDescription="Home"
+                android:src="@drawable/submit_report_logo"
                 app:tint="@color/text_label_blue" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home"
-                android:textSize="11sp"
-                android:textColor="@color/text_label_blue"/>
+                android:text="Home"
+                android:textColor="@color/text_label_blue"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,23 +80,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="Report"
                 android:src="@drawable/submit_report_logo"
-                android:contentDescription="@string/report"
                 app:tint="@color/text_label_blue" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/report"
-                android:textSize="11sp"
-                android:textColor="@color/text_label_blue"/>
+                android:text="Report"
+                android:textColor="@color/text_label_blue"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -135,11 +106,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-             <ImageView
+            android:contentDescription="Home"
+            android:gravity="center">
+
+            <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:contentDescription="Logo"
@@ -151,49 +124,52 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/archives_logo"
-                android:contentDescription="@string/archives"
-                app:tint="@color/primary_purple" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/archives"
-                android:textSize="11sp"
-                android:textColor="@color/primary_purple"
-                android:textStyle="bold"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/navHelpCenters"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:orientation="vertical">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/geo_map_logo"
-                android:contentDescription="Nearby Help"
+                android:contentDescription="Archives"
+                android:src="@drawable/archives_logo"
                 app:tint="@color/text_label_blue" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nearby"
+                android:text="Archives"
                 android:textColor="@color/text_label_blue"
-                android:textSize="11sp" />
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Nearby"
+                android:src="@drawable/account_logo"
+                app:tint="@color/primary_purple" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nearby"
+                android:textColor="@color/primary_purple"
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
