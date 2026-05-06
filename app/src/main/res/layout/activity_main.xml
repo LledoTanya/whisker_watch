@@ -38,7 +38,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Notifications"
             android:src="@drawable/notif_img" />
-    <!--the logo Ww area -->
+
+        <!-- the logo Ww area -->
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
@@ -110,8 +111,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Help Centers"
-                    android:textColor="@color/primary_purple"
+                    android:textColor="@color/srk_blue"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -145,13 +147,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Case Status"
                     android:textColor="@color/primary_purple"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Archives Button -->
+        <!-- About Button (replaced the old Archives tile) -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="130dp"
@@ -162,7 +165,7 @@
             app:cardElevation="4dp">
 
             <LinearLayout
-                android:id="@+id/btnArchives"
+                android:id="@+id/btnAbout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_button_yellow"
@@ -172,15 +175,16 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="85dp"
-                    android:contentDescription="Archives"
+                    android:contentDescription="About"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/btn_archives" />
+                    android:src="@drawable/aboutIcon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Archives"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="About"
                     android:textColor="@color/primary_purple"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -215,8 +219,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Submit Report"
-                    android:textColor="@color/primary_purple"
+                    android:textColor="@color/srk_blue"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

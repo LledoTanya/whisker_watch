@@ -3,6 +3,7 @@ package com.example.whisker_watch;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,15 +13,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Help Centers
-        View btnHelpCenters = findViewById(R.id.btnHelpCenters); 
+        // Help Centers tile
+        View btnHelpCenters = findViewById(R.id.btnHelpCenters);
         if (btnHelpCenters != null) {
             btnHelpCenters.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, HelpCentersActivity.class));
             });
         }
 
-        // Case Status
+        // Case Status tile
         View btnCaseStatus = findViewById(R.id.btnCaseStatus);
         if (btnCaseStatus != null) {
             btnCaseStatus.setOnClickListener(v -> {
@@ -28,15 +29,15 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        // Archives
-        View btnArchives = findViewById(R.id.btnArchives);
-        if (btnArchives != null) {
-            btnArchives.setOnClickListener(v -> {
-                startActivity(new Intent(MainActivity.this, ArchiveActivity.class));
+        // About tile (replaced the old Archives tile)
+        View btnAbout = findViewById(R.id.btnAbout);
+        if (btnAbout != null) {
+            btnAbout.setOnClickListener(v -> {
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
             });
         }
 
-        // Submit Report
+        // Submit Report tile
         View btnSubmitReport = findViewById(R.id.btnSubmitReport);
         if (btnSubmitReport != null) {
             btnSubmitReport.setOnClickListener(v -> {

@@ -78,26 +78,18 @@ public class CaseStatusActivity extends AppCompatActivity {
     }
 
     private void setupNavigation() {
-        View navHome = findViewById(R.id.navHome);
+        View navAbout = findViewById(R.id.navAbout);
         View navReport = findViewById(R.id.navReport);
         View navCenter = findViewById(R.id.navCenter);
-        View navArchives = findViewById(R.id.navArchives);
+        View navCases = findViewById(R.id.navCases);
         View navHelpCenters = findViewById(R.id.navHelpCenters);
 
-        if (navHome != null) {
-            navHome.setOnClickListener(v -> {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-            });
+        if (navAbout != null) {
+            navAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
         }
-
         if (navReport != null) {
-            navReport.setOnClickListener(v -> {
-                startActivity(new Intent(this, ReportActivity.class));
-            });
+            navReport.setOnClickListener(v -> startActivity(new Intent(this, ReportActivity.class)));
         }
-
         if (navCenter != null) {
             navCenter.setOnClickListener(v -> {
                 Intent intent = new Intent(this, MainActivity.class);
@@ -105,17 +97,13 @@ public class CaseStatusActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
-
-        if (navArchives != null) {
-            navArchives.setOnClickListener(v -> {
-                startActivity(new Intent(this, ArchiveActivity.class));
+        if (navCases != null) {
+            navCases.setOnClickListener(v -> {
+                // Already in Case Status
             });
         }
-
         if (navHelpCenters != null) {
-            navHelpCenters.setOnClickListener(v -> {
-                startActivity(new Intent(this, HelpCentersActivity.class));
-            });
+            navHelpCenters.setOnClickListener(v -> startActivity(new Intent(this, HelpCentersActivity.class)));
         }
     }
 

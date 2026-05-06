@@ -106,7 +106,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Empty state message (optional, shows when no reports yet) -->
+    <!-- Empty state message -->
     <TextView
         android:id="@+id/tvEmptyState"
         android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Nav Bar -->
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -133,8 +133,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- About -->
         <LinearLayout
-            android:id="@+id/navHome"
+            android:id="@+id/navAbout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -143,22 +144,20 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
-
             <ImageView
                 android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:src="@drawable/about_logo"
-                app:tint="@color/header_blue" />
-
+                app:tint="@color/text_label_blue" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
+                android:text="About"
                 android:textSize="10sp"
-                android:textColor="@color/header_blue"
-                android:textStyle="bold" />
+                android:textColor="@color/text_label_blue" />
         </LinearLayout>
 
+        <!-- Report -->
         <LinearLayout
             android:id="@+id/navReport"
             android:layout_width="0dp"
@@ -169,13 +168,11 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/submit_report_logo"
                 app:tint="@color/text_label_blue" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,6 +181,7 @@
                 android:textColor="@color/text_label_blue" />
         </LinearLayout>
 
+        <!-- Center (Home) -->
         <LinearLayout
             android:id="@+id/navCenter"
             android:layout_width="0dp"
@@ -194,15 +192,15 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="Home">
-
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/stats_btn" />
         </LinearLayout>
 
+        <!-- Cases (active on this screen) -->
         <LinearLayout
-            android:id="@+id/navArchives"
+            android:id="@+id/navCases"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -211,21 +209,21 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/archives_logo"
-                app:tint="@color/text_label_blue" />
-
+                android:src="@drawable/home_paw_logo"
+                app:tint="@color/primary_purple" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Archives"
+                android:text="Cases"
                 android:textSize="10sp"
-                android:textColor="@color/text_label_blue" />
+                android:textColor="@color/primary_purple"
+                android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Nearby -->
         <LinearLayout
             android:id="@+id/navHelpCenters"
             android:layout_width="0dp"
@@ -236,13 +234,11 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/geo_map_logo"
                 app:tint="@color/text_label_blue" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

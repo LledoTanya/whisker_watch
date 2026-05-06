@@ -255,7 +255,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- About (Now Leftmost) -->
+        <!-- About (active on this screen) -->
         <LinearLayout
             android:id="@+id/navAbout"
             android:layout_width="0dp"
@@ -281,8 +281,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Report -->
         <LinearLayout
-            android:id="@+id/navHome"
+            android:id="@+id/navReport"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -291,19 +292,21 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home_paw_logo"
+                android:src="@drawable/submit_report_logo"
                 app:tint="@color/text_label_blue" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
+                android:text="Report"
                 android:textSize="10sp"
-                android:textColor="@color/text_label_blue"/>
+                android:textColor="@color/text_label_blue" />
         </LinearLayout>
 
+        <!-- Center (Home) -->
         <LinearLayout
             android:id="@+id/navCenter"
             android:layout_width="0dp"
@@ -321,8 +324,9 @@
                 android:src="@drawable/stats_btn" />
         </LinearLayout>
 
+        <!-- Cases (paw logo) -->
         <LinearLayout
-            android:id="@+id/navReport"
+            android:id="@+id/navCases"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -331,19 +335,21 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/submit_report_logo"
+                android:src="@drawable/home_paw_logo"
                 app:tint="@color/text_label_blue" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Report"
+                android:text="Cases"
                 android:textSize="10sp"
                 android:textColor="@color/text_label_blue" />
         </LinearLayout>
 
+        <!-- Nearby -->
         <LinearLayout
             android:id="@+id/navHelpCenters"
             android:layout_width="0dp"
@@ -354,6 +360,7 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"

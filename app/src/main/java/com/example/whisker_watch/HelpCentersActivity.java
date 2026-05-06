@@ -2,8 +2,11 @@ package com.example.whisker_watch;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,15 +42,44 @@ public class HelpCentersActivity extends AppCompatActivity {
 
         setupNav();
     }
-//if (navHome != null) {
-//    navHome.setOnClickListener(v -> {
-//        startActivity(new Intent(this, MainActivity.class));
-//    });
-//}
+
     private void setupNav() {
-        findViewById(R.id.navHome).setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
-        findViewById(R.id.navReport).setOnClickListener(v -> startActivity(new Intent(this, ReportActivity.class)));
-        findViewById(R.id.navArchives).setOnClickListener(v -> startActivity(new Intent(this, ArchiveActivity.class)));
-        findViewById(R.id.navCenter).setOnClickListener(v -> startActivity(new Intent(this, CaseStatusActivity.class)));
+        View navAbout = findViewById(R.id.navAbout);
+        View navReport = findViewById(R.id.navReport);
+        View navCenter = findViewById(R.id.navCenter);
+        View navCases = findViewById(R.id.navCases);
+        View navHelpCenters = findViewById(R.id.navHelpCenters);
+
+        if (navAbout != null) {
+            navAbout.setOnClickListener(v -> {
+                startActivity(new Intent(this, AboutActivity.class));
+            });
+        }
+
+        if (navReport != null) {
+            navReport.setOnClickListener(v -> {
+                startActivity(new Intent(this, ReportActivity.class));
+            });
+        }
+
+        if (navCenter != null) {
+            navCenter.setOnClickListener(v -> {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            });
+        }
+
+        if (navCases != null) {
+            navCases.setOnClickListener(v -> {
+                startActivity(new Intent(this, CaseStatusActivity.class));
+            });
+        }
+
+        if (navHelpCenters != null) {
+            navHelpCenters.setOnClickListener(v -> {
+                // Already in Help Centers
+            });
+        }
     }
 }
