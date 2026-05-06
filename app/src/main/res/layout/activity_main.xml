@@ -148,8 +148,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Case Status"
-                    android:textColor="@color/primary_purple"
+                    android:text="Cases"
+                    android:textColor="@color/srk_yellow"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -177,7 +177,7 @@
                     android:layout_height="85dp"
                     android:contentDescription="About"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/aboutIcon" />
+                    android:src="@drawable/about_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="About"
-                    android:textColor="@color/primary_purple"
+                    android:textColor="@color/srk_yellow"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

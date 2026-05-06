@@ -34,12 +34,12 @@
     <!-- Button Colors -->
     <color name="btn_green">#B8E994</color>
     <color name="btn_pink">#FFB4B4</color>
-    <color name="btn_yellow">#FFF5A5</color>
+    <color name="btn_yellow">#FDF9DC</color>
     <color name="btn_blue">#DBE9FD</color>
 
     <!--strokes -->
     <color name="srk_blue">#6B96D1</color>
     <color name="srk_blue_light">#2196F3</color>
-    <color name="srk_yellow">#F0D483</color>
+    <color name="srk_yellow">#D9BE72</color>
     <color name="black">#000000</color>
 </resources>
