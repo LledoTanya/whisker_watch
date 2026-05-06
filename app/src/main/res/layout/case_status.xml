@@ -147,7 +147,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home_paw_logo"
+                android:src="@drawable/about_logo"
                 app:tint="@color/header_blue" />
 
             <TextView
