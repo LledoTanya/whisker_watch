@@ -5,6 +5,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <!-- Allow the app to see Google Maps -->
+        <package android:name="com.google.android.apps.maps" />
+        <!-- Allow the app to see any app that handles geo: uris (like Waze or browser maps) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
