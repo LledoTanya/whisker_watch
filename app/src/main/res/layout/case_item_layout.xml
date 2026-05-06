@@ -85,6 +85,8 @@
             android:textColor="@color/text_label_blue"
             android:textStyle="italic"
             android:maxLines="2"
+            android:clickable="true"
+            android:focusable="true"
             android:ellipsize="end" />
 
         <!-- Status badge -->

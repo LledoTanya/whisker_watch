@@ -2,6 +2,7 @@ package com.example.whisker_watch;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -31,41 +32,44 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class ReportActivity extends AppCompatActivity {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
+    private static final int DAILY_REPORT_LIMIT = 5;
+
+    private static final String PREFS_NAME = "report_limits";
+    private static final String KEY_LAST_DATE = "last_date";
+    private static final String KEY_COUNT = "count_today";
 
     private EditText etDescription, etLocation;
     private AppCompatButton btnGeoTagging;
+    private AppCompatButton btnSubmit;
     private ImageView ivPreview;
     private TextView tvDropText;
+    private TextView tvDailyLimit;
     private String selectedImageUri = "";
 
     private FusedLocationProviderClient fusedLocationClient;
 
-    // Modern photo picker — simpler than ACTION_PICK and works on all Android versions
     private final ActivityResultLauncher<String> photoPickerLauncher = registerForActivityResult(
             new ActivityResultContracts.GetContent(),
             uri -> {
                 if (uri != null) {
-                    // Try to make the URI accessible to other activities
                     try {
                         getContentResolver().takePersistableUriPermission(
                                 uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     } catch (SecurityException ignored) {
-                        // Some providers don't allow this — that's okay
                     }
 
                     selectedImageUri = uri.toString();
-
-                    // Show preview inside drop zone
                     ivPreview.setImageURI(uri);
                     ivPreview.setVisibility(View.VISIBLE);
                     tvDropText.setVisibility(View.GONE);
-
                     Toast.makeText(this, "Image Selected!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -79,14 +83,16 @@ public class ReportActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.etCaseDescription);
         etLocation = findViewById(R.id.etLocation);
         btnGeoTagging = findViewById(R.id.btnGeoTagging);
+        btnSubmit = findViewById(R.id.btnSubmit);
         ivPreview = findViewById(R.id.ivPreview);
         tvDropText = findViewById(R.id.tvDropText);
+        tvDailyLimit = findViewById(R.id.tvDailyLimit);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         setupNavigation();
+        updateLimitDisplay();
 
-        // Geo-tagging Button
         btnGeoTagging.setOnClickListener(v -> {
             if (hasLocationPermission()) {
                 fetchLocation();
@@ -95,13 +101,20 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-        // Upload File Button
         findViewById(R.id.btnUploadFile).setOnClickListener(v -> {
             photoPickerLauncher.launch("image/*");
         });
 
-        // Submit Button
-        findViewById(R.id.btnSubmit).setOnClickListener(v -> {
+        btnSubmit.setOnClickListener(v -> {
+            // Block if daily limit reached
+            int submittedToday = getReportsToday();
+            if (submittedToday >= DAILY_REPORT_LIMIT) {
+                Toast.makeText(this,
+                        "Daily limit reached. You can submit again tomorrow.",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
             String desc = etDescription.getText().toString().trim();
             String loc = etLocation.getText().toString().trim();
 
@@ -112,12 +125,87 @@ public class ReportActivity extends AppCompatActivity {
 
             Report report = new Report(desc, loc, selectedImageUri);
 
+            // Increment counter for today
+            incrementReportsToday();
+
             Intent intent = new Intent(ReportActivity.this, CaseStatusActivity.class);
             intent.putExtra("REPORT_DATA", report);
             startActivity(intent);
             finish();
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refresh counter in case the day rolled over
+        updateLimitDisplay();
+    }
+
+    // ==================== DAILY LIMIT TRACKING ====================
+
+    private String getTodayDateString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
+    /**
+     * Returns how many reports the user has submitted today.
+     * Auto-resets to 0 if it's a new day.
+     */
+    private int getReportsToday() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String lastDate = prefs.getString(KEY_LAST_DATE, "");
+        String today = getTodayDateString();
+
+        if (!today.equals(lastDate)) {
+            // New day — reset
+            prefs.edit()
+                    .putString(KEY_LAST_DATE, today)
+                    .putInt(KEY_COUNT, 0)
+                    .apply();
+            return 0;
+        }
+        return prefs.getInt(KEY_COUNT, 0);
+    }
+
+    /**
+     * Increments today's counter by 1.
+     */
+    private void incrementReportsToday() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        int current = getReportsToday();
+        prefs.edit()
+                .putString(KEY_LAST_DATE, getTodayDateString())
+                .putInt(KEY_COUNT, current + 1)
+                .apply();
+    }
+
+    /**
+     * Updates the limit notice text and disables Submit if maxed out.
+     */
+    private void updateLimitDisplay() {
+        int submittedToday = getReportsToday();
+        int remaining = DAILY_REPORT_LIMIT - submittedToday;
+
+        if (tvDailyLimit != null) {
+            if (remaining <= 0) {
+                tvDailyLimit.setText("⚠ Daily limit reached. Try again tomorrow.");
+            } else if (remaining == 1) {
+                tvDailyLimit.setText("ⓘ 1 report remaining today.");
+            } else {
+                tvDailyLimit.setText("ⓘ " + remaining + " of " + DAILY_REPORT_LIMIT
+                        + " reports remaining today.");
+            }
+        }
+
+        if (btnSubmit != null) {
+            btnSubmit.setEnabled(remaining > 0);
+            btnSubmit.setAlpha(remaining > 0 ? 1.0f : 0.5f);
+        }
+    }
+
+    // ==================== NAVIGATION ====================
 
     private void setupNavigation() {
         View navAbout = findViewById(R.id.navAbout);
@@ -130,9 +218,7 @@ public class ReportActivity extends AppCompatActivity {
             navAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
         }
         if (navReport != null) {
-            navReport.setOnClickListener(v -> {
-                // Already in Report
-            });
+            navReport.setOnClickListener(v -> { /* already here */ });
         }
         if (navCenter != null) {
             navCenter.setOnClickListener(v -> {

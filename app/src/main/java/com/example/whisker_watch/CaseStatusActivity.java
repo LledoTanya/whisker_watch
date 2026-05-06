@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -138,7 +139,14 @@ public class CaseStatusActivity extends AppCompatActivity {
             ImageView ivPhoto = cardView.findViewById(R.id.ivCasePhoto);
 
             if (tvDesc != null) tvDesc.setText(report.getDescription());
-            if (tvLoc != null) tvLoc.setText(report.getLocation());
+            if (tvLoc != null) {
+                tvLoc.setText(report.getLocation());
+                tvLoc.setTextColor(getResources().getColor(R.color.text_label_blue));
+                tvLoc.setPaintFlags(tvLoc.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
+
+                final String locationText = report.getLocation();
+                tvLoc.setOnClickListener(v -> openLocationInMaps(locationText));
+            }
 
             if (ivPhoto != null) {
                 if (report.hasImage()) {
@@ -177,5 +185,53 @@ public class CaseStatusActivity extends AppCompatActivity {
             }
         }
         return result;
+    }
+    /**
+     * Opens the given location in Google Maps. Tries coordinates first if present,
+     * otherwise searches the location text.
+     */
+    private void openLocationInMaps(String locationText) {
+        if (locationText == null || locationText.isEmpty()) {
+            Toast.makeText(this, "No location to show", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            Uri mapUri;
+
+            // Check if the location string contains coordinates in parentheses like "(6.91306, 122.07389)"
+            java.util.regex.Pattern coordPattern = java.util.regex.Pattern.compile(
+                    "\\(\\s*(-?\\d+\\.\\d+)\\s*,\\s*(-?\\d+\\.\\d+)\\s*\\)");
+            java.util.regex.Matcher matcher = coordPattern.matcher(locationText);
+
+            if (matcher.find()) {
+                // Use exact coordinates
+                String lat = matcher.group(1);
+                String lng = matcher.group(2);
+                mapUri = Uri.parse("geo:" + lat + "," + lng + "?q=" + lat + "," + lng);
+            } else {
+                // Fall back to text search
+                String encoded = Uri.encode(locationText);
+                mapUri = Uri.parse("geo:0,0?q=" + encoded);
+            }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, mapUri);
+            intent.setPackage("com.google.android.apps.maps");
+
+            // If Google Maps is installed, use it. Otherwise let any map app handle it.
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                // Fall back to no specific package (any map app or browser)
+                Intent fallback = new Intent(Intent.ACTION_VIEW, mapUri);
+                if (fallback.resolveActivity(getPackageManager()) != null) {
+                    startActivity(fallback);
+                } else {
+                    Toast.makeText(this, "No map app installed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Couldn't open map", Toast.LENGTH_SHORT).show();
+        }
     }
 }
